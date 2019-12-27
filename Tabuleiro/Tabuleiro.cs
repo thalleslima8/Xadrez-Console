@@ -1,9 +1,9 @@
 ﻿
 namespace tabuleiro {
-    class Tabuleiro {
+    class Tabuleiro { //Define o tabuleiro de xadrez
         public int linhas { get; set; }
         public int colunas { get; set; }
-        private Peca[,] pecas;
+        private Peca[,] pecas; //matriz de peças
 
         public Tabuleiro(int linhas, int colunas) {
             this.linhas = linhas;
@@ -27,9 +27,20 @@ namespace tabuleiro {
             p.posicao = pos;
         }
 
+        public Peca retirarPeca(Posicao pos) {
+            if (peca(pos) == null) {
+                return null;
+            }
+            Peca aux = peca(pos);
+            aux.posicao = null;
+            pecas[pos.linha, pos.coluna] = null;
+            return aux;
+
+        }
+
 
         public bool posicaoValida(Posicao pos) {
-            if(pos.linha<0 || pos.linha>=linhas|| pos.coluna<0|| pos.coluna >= colunas) {
+            if (pos.linha < 0 || pos.linha >= linhas || pos.coluna < 0 || pos.coluna >= colunas) {
                 return false;
             }
             return true;

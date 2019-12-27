@@ -3,21 +3,29 @@ using tabuleiro;
 using xadrez;
 
 
+
 namespace Xadrez_Console {
     class Program {
         static void Main(string[] args) {
             try {
 
+                PartidaDeXadrez partida = new PartidaDeXadrez();
+                
 
-                Tabuleiro tab = new Tabuleiro(8, 8);
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 5));
-                tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(2, 4));
+                while (!partida.terminada) {
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partida.tab);
 
-                tab.colocarPeca(new Torre(tab, Cor.Branca), new Posicao(3, 5));
-                tab.colocarPeca(new Rei(tab, Cor.Branca), new Posicao(7, 2));
+                    Console.Write("Digite a posição de Origem: ");
+                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                    Console.Write("Digite a posição de Destino: ");
+                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
 
-                Tela.imprimirTabuleiro(tab);
+                    partida.executaMovimento(origem, destino);
+                }
+               
+
+                
             } catch(TabuleiroException e) {
                 Console.WriteLine(e.Message);
             }

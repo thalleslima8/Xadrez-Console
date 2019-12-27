@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using tabuleiro;
+using xadrez;
 
 namespace Xadrez_Console {
     class Tela {
@@ -23,7 +24,7 @@ namespace Xadrez_Console {
             Console.WriteLine("  A B C D E F G H");
         }
 
-        public static void imprimirPeca(Peca peca) {
+        public static void imprimirPeca(Peca peca) { //metodo que imprime peças em cores diferentes. Preto sera amarelo
             if(peca.cor == Cor.Branca) {
                 Console.Write(peca);
             } else {
@@ -32,6 +33,13 @@ namespace Xadrez_Console {
                 Console.Write(peca);
                 Console.ForegroundColor = aux;
             }
+        }
+
+        public static PosicaoXadrez lerPosicaoXadrez() {
+            string s = Console.ReadLine();
+            int linha = int.Parse(s[1] + ""); ;
+            char coluna = s[0];
+            return new PosicaoXadrez(coluna, linha);
         }
 
     }
