@@ -15,10 +15,7 @@ namespace Xadrez_Console {
                 while (!partida.terminada) {
                     try {
                         Console.Clear();
-                        Tela.imprimirTabuleiro(partida.tab);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partida.turno);
-                        Console.WriteLine("Aguardando jogada: Pecas " + partida.jogadorAtual + "s");
+                        Tela.imprimirPartida(partida);
 
 
                         Console.WriteLine();
