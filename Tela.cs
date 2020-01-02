@@ -12,7 +12,15 @@ namespace Xadrez_Console {
             imprimirPecasCapturadas(partida);
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
-            Console.WriteLine("Aguardando jogada: Pecas " + partida.jogadorAtual + "s");
+            if (!partida.terminada) {
+                Console.WriteLine("Aguardando jogada: Pecas " + partida.jogadorAtual + "s");
+                if (partida.xeque) {
+                    Console.WriteLine("XEQUE!");
+                }
+            } else {
+                Console.WriteLine("XEQUEMATE!!");
+                Console.WriteLine("Vencedor: " + partida.jogadorAtual);
+            }
         }
 
         public static void imprimirPecasCapturadas(PartidaDeXadrez partida) {
@@ -30,7 +38,7 @@ namespace Xadrez_Console {
 
         public static void imprimirConjunto(HashSet<Peca> conjunto) {
             Console.Write("[");
-            foreach(Peca x in conjunto) {
+            foreach (Peca x in conjunto) {
                 Console.Write(x + " ");
             }
             Console.Write("]");
@@ -74,7 +82,7 @@ namespace Xadrez_Console {
             if (peca == null) {
                 Console.Write("- ");
             } else {
-                               
+
                 if (peca.cor == Cor.Branca) {
                     Console.Write(peca);
                 } else {
@@ -87,7 +95,7 @@ namespace Xadrez_Console {
             }
         }
 
-        
+
         public static PosicaoXadrez lerPosicaoXadrez() {
             string s = Console.ReadLine();
             int linha = int.Parse(s[1] + ""); ;
